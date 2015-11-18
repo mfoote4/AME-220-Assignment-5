@@ -23,37 +23,37 @@
 
     <div id="addNew">
         <select id='timeZones' onchange="getSelected(this)">
-            <option value='-12'> Baker Island (-12:00) </option>
-            <option value='-11'> American Samoa (-11:00) </option>
-            <option value='-10'> Hawaii (-10:00) </option>
-            <option value='-9.3'> Marquesas Islands (-9:30) </option>
-            <option value='-9'> Gambier Islands (-9:00) </option>
-            <option value='-8'> Baja California (-8:00) </option>
-            <option value='-7' selected> Arizona (-7:00) </option>
-            <option value='-6'> French Polynesia (-6:00) </option>
-            <option value='-5'> Colombia (-5:00) </option>
-            <option value='-4.3'> Venezuela (-4:30) </option>
-            <option value='-4'> Bolivia (-4:00) </option>
-            <option value='-3.3'> Newfoundland (-3:30) </option>
-            <option value='-3'> Argentina (-3:00) </option>
-            <option value='-2'> South Georgia (-2:00) </option>
-            <option value='-1'> Cape Verde (-1:00) </option>
-            <option value='0'> Ivory Coast (00:00) </option>
-            <option value=1> Tunisia (+1:00) </option>
-            <option value='2'> Egypt (+2:00) </option>
-            <option value='3'> Sudan (+3:00) </option>
-            <option value='3.3'> Iran (+3:30) </option>
-            <option value='4'> Armenia (+4:00) </option>
-            <option value='4.3'> Afganistan (+4:30) </option>
-            <option value='5'> Pakistan (+5:00) </option>
-            <option value='5.3'> India (+5:30) </option>
-            <option value='5.45'> Nepal (+5:45) </option>
-            <option value='6'> Bangladesh (+6:00) </option>
-            <option value='6.3'> Myanmar (+6:30) </option>
-            <option value='7'> Thailand (+7:00) </option>
-            <option value='8'> Hong Kong (+8:00) </option>
-            <option value='8.3'> North Korea (+8:30) </option>
-            <option value='8.45'> Eucla, Australia (+8:45) </option>
+            <option value='-12xBaker Island'> Baker Island (-12:00) </option>
+            <option value='-11xAmerican Samoa'> American Samoa (-11:00) </option>
+            <option value='-10xHawaii'> Hawaii (-10:00) </option>
+            <option value='-9.3xMarquesas Islands'> Marquesas Islands (-9:30) </option>
+            <option value='-9xGambier Islands'> Gambier Islands (-9:00) </option>
+            <option value='-8xBaja California'> Baja California (-8:00) </option>
+            <option value='-7xArizona' selected> Arizona (-7:00) </option>
+            <option value='-6xFrench Polynesia'> French Polynesia (-6:00) </option>
+            <option value='-5xColombia'> Colombia (-5:00) </option>
+            <option value='-4.3xVenezuela'> Venezuela (-4:30) </option>
+            <option value='-4xBolivia'> Bolivia (-4:00) </option>
+            <option value='-3.3xNewfoundland'> Newfoundland (-3:30) </option>
+            <option value='-3xArgentina'> Argentina (-3:00) </option>
+            <option value='-2xSouth Georgia'> South Georgia (-2:00) </option>
+            <option value='-1xCape Verde'> Cape Verde (-1:00) </option>
+            <option value='0xIvory Coast'> Ivory Coast (00:00) </option>
+            <option value=1xTunisia> Tunisia (+1:00) </option>
+            <option value='2xEgypt'> Egypt (+2:00) </option>
+            <option value='3xSudan'> Sudan (+3:00) </option>
+            <option value='3.3xIran'> Iran (+3:30) </option>
+            <option value='4xArmenia'> Armenia (+4:00) </option>
+            <option value='4.3xAfganistan'> Afganistan (+4:30) </option>
+            <option value='5xPakistan'> Pakistan (+5:00) </option>
+            <option value='5.3xIndia'> India (+5:30) </option>
+            <option value='5.45xNepal'> Nepal (+5:45) </option>
+            <option value='6xBangladesh'> Bangladesh (+6:00) </option>
+            <option value='6.3xMyanmar'> Myanmar (+6:30) </option>
+            <option value='7xThailand'> Thailand (+7:00) </option>
+            <option value='8xHong Kong'> Hong Kong (+8:00) </option>
+            <option value='8.3xNorth Korea'> North Korea (+8:30) </option>
+            <option value='8.45xEucla, Australia'> Eucla, Australia (+8:45) </option>
             <option value='9'> Japan (+9:00) </option>
             <option value='9.3'> Northern Territory, Australia (+9:30) </option>
             <option value='10'> Eastern Indonesia (+10:00) </option>
@@ -138,6 +138,7 @@
         <a href='javascript:addCust()'> Add </a>
         <a href='javascript:cancelCust()'> Cancel </a>
     </div>
+    
 </body>
 
 <head>
@@ -266,40 +267,41 @@
         var select, nd;
 
         function getSelected(select) {
-
-       select = document.getElementById("timeZones");
-       var offset = select.options[select.selectedIndex].value;
+            $('.results').html(displayPlace());
+            select = document.getElementById("timeZones");
+            var time = select.value.split("x");
+            var offset = parseInt(time[0]);
        d = new Date();
        utc = d.getTime() + (d.getTimezoneOffset() * 60000); 
        nd = (utc + (3600000*offset));
    }
 
   function changeBackColor(color) {
-      color = document.getElementById("colorBack"); //Take selected value from select option
+      color = document.getElementById("colorBack"); 
       var col = color.options[color.selectedIndex].value;
       $("#clockWrapper").css("background-color", col);
   }
 
   function changeMinColor(color) {
-      color = document.getElementById("colorMin"); //Take selected value from select option
+      color = document.getElementById("colorMin"); 
       var col = color.options[color.selectedIndex].value;
       $("#min span").css("background-color", col);
   }
 
   function changeHourColor(color) {
-      color = document.getElementById("colorHour"); //Take selected value from select option
+      color = document.getElementById("colorHour"); 
       var col = color.options[color.selectedIndex].value;
       $("#hour span").css("background-color", col);
   }
 
   function changeMinLength(length) {
-      length = document.getElementById("lengthMin"); //Take selected value from select option
+      length = document.getElementById("lengthMin"); 
       var col = length.options[length.selectedIndex].value;
       $("#min span").css("max-width", col);
   }
 
   function changeHourLength(length) {
-      length = document.getElementById("lengthHour"); //Take selected value from select option
+      length = document.getElementById("lengthHour"); 
       var col = length.options[length.selectedIndex].value;
       $("#hour span").css("max-width", col);
   }
@@ -347,7 +349,7 @@
   }
 
   function cancelTimeZone() {
-      $('#timeZones option[value="-7"]').attr("selected", "selected");
+      $('#timeZones option[value="-7xArizona"]').attr("selected", "selected");
       updateClock(new Date());
       document.getElementById("addNew").style.marginTop = "1000px";
   }
@@ -366,23 +368,33 @@
   }
 
   function generateMyTimeZoneList(){
-    var outS = "";
-    outS += "<a href='javascript:TZSelected(-1)'> Current Location </a><br>";
+      var outS = "";
+      outS +="<a class='results'></a>"
+    outS += "<br><a href='javascript:TZSelected(-1)'> Current Location </a><br>";
     // generate markup
     outS += "<a href='javascript:addNewTZ()'>+ New </a><br><br>";
     outS += "<a href='javascript:customize()'> Customize </a>";
+
     document.getElementById("placeList").innerHTML = outS;
     
     
 
   }
+
+  function displayPlace() {
+      select = document.getElementById("timeZones");
+      var place = select.value.split("x");
+      var offset = place[1].toString();
+      return offset;
+  }
+
   function TZSelected(a)
   {
       if (a == -1) {
-          $('#timeZones option[value="-7"]').attr("selected", "selected");
-        updateClock(new Date());
-        
-    }
+          $('#timeZones option[value="-7xArizona"]').attr("selected", "selected");
+          updateClock(null);
+
+      }
   }
 var myTimeZones = [];
     </script>
